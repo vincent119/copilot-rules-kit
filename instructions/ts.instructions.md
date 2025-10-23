@@ -3,7 +3,7 @@ description: 'TypeScript / JavaScript 編碼規範與自動產生指引'
 applyTo: '**/*.ts,**/*.tsx,**/*.js,**/*.jsx'
 ---
 
-本檔延伸自 `.github/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，僅針對 TypeScript / JavaScript 特有規範補充。
+本檔延伸自 `.github/standards/copilot-common.md` 與 `.github/standards/copilot-vocabulary.yaml`，僅針對 TypeScript / JavaScript 特有規範補充。
 
 # TypeScript / JavaScript 編碼指南（for Copilot & VS Code Agent）
 

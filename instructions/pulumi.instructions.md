@@ -3,7 +3,7 @@ description: 'Pulumi（YAML）專用產生與編輯規範：resources / options 
 applyTo: 'Pulumi.yaml,Pulumi.*.yaml,**/Pulumi.yaml,**/Pulumi.*.yaml,**/*.pulumi.yaml'
 ---
 
-本檔延伸自 `.github/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，僅針對 Pulumi YAML 特有規範補充。
+本檔延伸自 `.github/standards/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，僅針對 Pulumi YAML 特有規範補充。
 
 # Pulumi for YAML 指南（for Copilot & VS Code Agent）
 

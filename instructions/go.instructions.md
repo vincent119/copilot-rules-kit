@@ -1,14 +1,11 @@
 ---
 description: 'Go 開發與 Copilot/Agent 產生規範指引'
 applyTo: '**/*.go,**/go.mod,**/go.sum'
-extends:
-  common: ".github/copilot-common.md"
-  vocabulary: ".github/copilot-vocabulary.yaml"
 ---
 
 # Go 開發與 Copilot / Agent 指南
 
-本檔延伸自 .github/copilot-common.md 與 .github/copilot-vocabulary.yaml，統一格式、安全與用詞規範。
+本檔延伸自 .github/standards/copilot-common.md 與 .github/standards/copilot-vocabulary.yaml，統一格式、安全與用詞規範。
 
 本文件整合 **Go 語言最佳實踐** 與 **Copilot / VS Code Agent 產生守則**，
 確保自動產生或人工撰寫的程式碼皆符合 idiomatic Go 標準，並可直接編譯使用。

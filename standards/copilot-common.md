@@ -3,8 +3,8 @@
 > 本檔為所有 Copilot 規範的共用基底。
 > 語言／工具專用檔（例如 `go.instructions.md`, `yaml.instructions.md`, `pulumi.instructions.md`）**必須**在開頭宣告：
 >
-> - 本檔延伸自：`.github/copilot-common.md`
-> - 詞彙映射：`.github/copilot-vocabulary.yaml`
+> - 本檔延伸自：`.github/standards/copilot-common.md`
+> - 詞彙映射：`.github/standards/copilot-vocabulary.yaml`
 >
 > 語言專用檔只補充該語言／工具「特有」規範，不得重複本檔內容。
 
@@ -137,7 +137,7 @@
 ---
 
 > **實施說明（供維護者）**
-> 1) 提交本檔至 `.github/copilot-common.md`。
-> 2) 建立 `.github/copilot-vocabulary.yaml`（術語映射；各語言檔需「指向此檔」）。
+> 1) 提交本檔至 `.github/standards/copilot-common.md`。
+> 2) 建立 `.github/standards/copilot-vocabulary.yaml`（術語映射；各語言檔需「指向此檔」）。
 > 3) 各語言／工具專用檔在開頭加入「延伸自本檔與 vocabulary」的宣告，並**刪除**與本檔重複規範。
 > 4) CI 加入：格式化、lint、編譯、測試、重複檔檢查與（若有）基準退步守門。

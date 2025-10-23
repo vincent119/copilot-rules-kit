@@ -3,7 +3,7 @@ description: 'YAML / IaC (Pulumi, Kubernetes, CloudFormation) 編輯與產生規
 applyTo: '**/*.yaml,**/*.yml'
 ---
 
-本檔延伸自 `.github/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，僅針對 YAML 特有規範補充。
+本檔延伸自 `.github/standards/copilot-common.md` 與 `.github/standards/copilot-vocabulary.yaml`，僅針對 YAML 特有規範補充。
 
 # YAML / IaC 指南（for Copilot & VS Code Agent）
 

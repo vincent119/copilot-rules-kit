@@ -2,7 +2,7 @@
 description: 'Helm Chart / Templates 產生與編輯規範（適用 Copilot / VS Code Agent）'
 applyTo: '**/Chart.yaml,**/values.yaml,**/values/*.yaml,**/templates/**/*.yaml,**/charts/**,**/values.schema.json'
 ---
-本檔延伸自 `.github/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，並針對 Helm Chart 特有部分進行補充。
+本檔延伸自 `.github/standards/copilot-common.md` 與 `.github/standards/copilot-vocabulary.yaml`，並針對 Helm Chart 特有部分進行補充。
 本文件規範 **Helm Chart** 的結構、`values.yaml`、`templates/` 與相依管理，確保輸出可被 `helm lint` 與 `helm template` 正確解析、且部署安全。
 
 ---

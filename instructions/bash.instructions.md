@@ -1,14 +1,11 @@
 ---
 description: 'Bash / Shell Script 撰寫與自動產生規範'
 applyTo: '**/*.sh,**/*.bash'
-extends:
-  common: ".github/copilot-common.md"
-  vocabulary: ".github/copilot-vocabulary.yaml"
 ---
 
 # Bash / Shell Script 指南（for Copilot & VS Code Agent）
 
-本檔延伸自 copilot-common.md 與 copilot-vocabulary.yaml，統一格式、安全與用詞規範。
+本檔延伸自 .github/copilot-common.md 與 .github/copilot-vocabulary.yaml，統一格式、安全與用詞規範。
 
 ---
 
@@ -129,7 +126,7 @@ log_error() { echo "[ERROR] $*" >&2; }
 
 ---
 
-📁 放置路徑：
+放置路徑：
 ```
-.github/bash.instructions.md
+.github/standards/bash.instructions.md
 ```

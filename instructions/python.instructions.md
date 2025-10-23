@@ -3,7 +3,7 @@ description: 'Python 編碼規範與自動產生指引（適用 Copilot / VS Cod
 applyTo: '**/*.py'
 ---
 
-本檔延伸自 `.github/copilot-common.md` 與 `.github/copilot-vocabulary.yaml`，僅針對 Python 特有規範補充。
+本檔延伸自 `.github/standards/copilot-common.md` 與 `.github/standards/copilot-vocabulary.yaml`，僅針對 Python 特有規範補充。
 
 # Python 編碼指南（for Copilot & VS Code Agent）
 
