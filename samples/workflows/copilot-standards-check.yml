@@ -1,0 +1,23 @@
+name: Copilot Standards Check
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  standards-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Ensure submodules are synced
+        run: git submodule update --init --recursive
+
+      - name: Vocabulary Scan
+        run: |
+          python3 .github/rules/scripts/vocabulary_scan.py             --vocab .github/rules/standards/copilot-vocabulary.yaml             --paths "docs/**/*.md" "src/**/*.go" "src/**/*.ts"
