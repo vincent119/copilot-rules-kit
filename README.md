@@ -1,6 +1,6 @@
 # copilot-rules-kit
 
-集中維護的 **AI 助手產出規範套件**（for GitHub Copilot / VS Code Agent / 其他 LLM 協作工具）。  
+集中維護的 **AI 助手產出規範套件**（for GitHub Copilot / VS Code Agent / 其他 LLM 協作工具）。
 目標：在多個專案之間 **統一生成規範、術語詞彙、與文件模板**，確保產出 **正確性、可維護性、與一致性**。
 
 > 適用情境：公司/團隊以 **git submodule** 或 **git subtree** 導入本套件至各個專案，並以 **tag 版本** 管理升級與回滾。
@@ -16,34 +16,36 @@ copilot-rules-kit/
 ├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
-├── samples/
-│   └── workflows/
-│       └── copilot-standards-check.yml
+├── copilot-chat-instructions.yaml
+├── copilot-instructions.md
+├── copilot-instructions.yaml
+├── instructions/
+│   ├── bash.instructions.md
+│   ├── go.instructions.md
+│   ├── helm.instructions.md
+│   ├── pulumi.instructions.md
+│   ├── python.instructions.md
+│   ├── ts.instructions.md
+│   └── yaml.instructions.md
 ├── scripts/
+│   ├── merge_copilot_instructions.py
 │   ├── setup-copilot-submodule.sh
 │   ├── setup-copilot-subtree.sh
+│   ├── setup-pre-commit.sh
 │   └── vocabulary_scan.py
 └── standards/
-    ├── bash.instructions.md
-    ├── copilot-chat-instructions.yaml
+    ├── copilot-commit-message-instructions.md
     ├── copilot-common.md
     ├── copilot-instructions-extended.md
-    ├── copilot-instructions.md
-    ├── copilot-instructions.yaml
-    ├── copilot-vocabulary.yaml
-    ├── go.instructions.md
-    ├── helm.instructions.md
-    ├── pulumi.instructions.md
-    ├── python.instructions.md
-    ├── ts.instructions.md
-    └── yaml.instructions.md
+    ├── copilot-pull-request-description-instructions.md
+    └── copilot-vocabulary.yaml
 ```
 
 ---
 
 ## 消費端導入位置（推薦）
 
-> **導入位置：`.github/rules/`**  
+> **導入位置：`.github/rules/`**
 > 優點：與 GitHub Actions、Issue/PR 模板等生態一致；不污染專案根目錄，便於工具化引用。
 
 ### A. 以 Git Submodule 導入（推薦：清楚版本邊界、易回滾）
@@ -130,42 +132,8 @@ python3 .github/rules/scripts/vocabulary_scan.py   --vocab .github/rules/standar
 ```
 
 **輸出**：
-- 發現黑名單：`[DISALLOWED] <詞> in <檔案>`  
+- 發現黑名單：`[DISALLOWED] <詞> in <檔案>`
 - 提示建議改寫：`[SUGGEST] <錯> → <正> in <檔案>`
-
----
-
-## 範例：GitHub Actions 工作流程（消費端複製後即可用）
-
-將下列檔案複製到 **消費端專案**：`.github/workflows/copilot-standards-check.yml`：
-
-```yaml
-name: Copilot Standards Check
-
-on:
-  pull_request:
-    branches: [ main ]
-  push:
-    branches: [ main ]
-
-jobs:
-  standards-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo (with submodules)
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Ensure submodules are synced
-        run: git submodule update --init --recursive
-
-      - name: Vocabulary Scan
-        run: |
-          python3 .github/rules/scripts/vocabulary_scan.py             --vocab .github/rules/standards/copilot-vocabulary.yaml             --paths "docs/**/*.md" "src/**/*.go" "src/**/*.ts"
-```
-
-> 若採用 **subtree** 導入，`with: submodules: recursive` 可省略。
 
 ---
 

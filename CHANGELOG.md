@@ -2,17 +2,14 @@
 本專案遵循 Keep a Changelog 與 Semantic Versioning 2.0.0
 
 ## [Unreleased]
-### Added
-- 新增升版腳本與 Subtree 導入腳本。
-- 提供 CI 驗證示例腳本。
-
 ### Changed
-- 建議固定路徑為 .ai/rules/。
-- README 結構調整。
+- 簡化專案結構,移除 `samples/` 目錄及 workflows 範例
+- 調整為純規範套件,讓團隊更容易採用
+- 保留 `scripts/` 工具腳本供消費端使用
+- 更新 README 移除 workflows 相關說明
 
-### Fixed
-- 修正命令漏掉 --recursive 說明。
-- 修正文案排版不一致。
+### Removed
+- 移除 `samples/workflows/` 目錄及 GitHub Actions 範例
 
 ---
 

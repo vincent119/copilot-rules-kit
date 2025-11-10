@@ -5,7 +5,7 @@ applyTo: '**/*'
 
 # Copilot / Agent 全域規範
 
-本檔延伸自 .github/standards/copilot-common.md 與 .github/standards/copilot-vocabulary.yaml，統一專案產出行為與用詞規範。
+本檔延伸自 standards/copilot-common.md 與 standards/copilot-vocabulary.yaml，統一專案產出行為與用詞規範。
 
 ---
 
@@ -63,17 +63,17 @@ applyTo: '**/*'
 
 | 檔案名稱 | 適用領域 |
 |-----------|-----------|
-| `go.instructions.md` | Go（`gofmt`, `goimports`, idiomatic Go） |
-| `ts.instructions.md` | TypeScript（ESLint, Prettier） |
-| `yaml.instructions.md` | YAML / IaC（Kubernetes, Pulumi, CloudFormation） |
-| `helm.instructions.md` | Helm Chart / values.yaml |
-| `python.instructions.md` | Python（PEP8, Black, mypy） |
+| `instructions/go.instructions.md` | Go（`gofmt`, `goimports`, idiomatic Go） |
+| `instructions/ts.instructions.md` | TypeScript（ESLint, Prettier） |
+| `instructions/yaml.instructions.md` | YAML / IaC（Kubernetes, Pulumi, CloudFormation） |
+| `instructions/helm.instructions.md` | Helm Chart / values.yaml |
+| `instructions/python.instructions.md` | Python（PEP8, Black, mypy） |
 
 ---
 
 ## 詞彙與術語（外部參照）
 
-- 本檔不再內嵌詞彙表；請統一參照 `.github/standards/copilot-vocabulary.yaml`。
+- 本檔不再內嵌詞彙表；請統一參照 `standards/copilot-vocabulary.yaml`。
 - 若詞彙衝突，以 vocabulary 檔為準。
 - forbidden / preferred / mapping / normalization 詳見該檔。
 
@@ -90,15 +90,22 @@ applyTo: '**/*'
 
 ---
 
-建議放置路徑：
+建議放置路徑(消費端專案):
 ```
-.github/
-├─ copilot-instructions.md          ← 全域設定（此檔案）
+.github/rules/                       ← git submodule/subtree 導入位置
+├─ copilot-instructions.md          ← 全域設定（本套件）
 ├─ copilot-instructions.yaml        ← 同步給 Agent 使用
-├─ copilot-chat-instructions.md     ← Chat 模式專用
-├─ go.instructions.md
-├─ ts.instructions.md
-├─ yaml.instructions.md
-├─ helm.instructions.md
-└─ python.instructions.md
+├─ copilot-chat-instructions.yaml   ← Chat 模式專用
+├─ instructions/
+│  ├─ go.instructions.md
+│  ├─ ts.instructions.md
+│  ├─ yaml.instructions.md
+│  ├─ helm.instructions.md
+│  ├─ python.instructions.md
+│  └─ bash.instructions.md
+└─ standards/
+   ├─ copilot-common.md
+   ├─ copilot-vocabulary.yaml
+   ├─ copilot-commit-message-instructions.md
+   └─ copilot-pull-request-description-instructions.md
 ```
