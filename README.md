@@ -128,14 +128,14 @@ bash scripts/setup-copilot-subtree.sh .github v1.0.3
 
 **用法**：
 ```bash
-python3 .github/rules/scripts/vocabulary_scan.py   --vocab .github/rules/standards/copilot-vocabulary.yaml   --paths "docs/**/*.md" "src/**/*.go" "src/**/*.ts"
+python3 .github/scripts/vocabulary_scan.py \
+  --vocab .github/standards/copilot-vocabulary.yaml \
+  --paths "docs/**/*.md" "src/**/*.go" "src/**/*.ts"
 ```
 
 **輸出**：
 - 發現黑名單：`[DISALLOWED] <詞> in <檔案>`
-- 提示建議改寫：`[SUGGEST] <錯> → <正> in <檔案>`
-
----
+- 提示建議改寫：`[SUGGEST] <錯> → <正> in <檔案>`---
 
 ## 授權
 
