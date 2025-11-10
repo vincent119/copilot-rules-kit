@@ -45,30 +45,30 @@ copilot-rules-kit/
 
 ## 消費端導入位置（推薦）
 
-> **導入位置：`.github/rules/`**
-> 優點：與 GitHub Actions、Issue/PR 模板等生態一致；不污染專案根目錄，便於工具化引用。
+> **建議導入位置：直接放在 `.github/` 目錄下**
+> 優點：Copilot 可直接讀取 `.github/copilot-instructions.md`；與 GitHub 生態一致。
 
 ### A. 以 Git Submodule 導入（推薦：清楚版本邊界、易回滾）
 
 ```bash
-# 於消費端專案根目錄執行
-git submodule add -b main https://github.com/vincent119/copilot-rules-kit.git .github/rules
+# 於消費端專案根目錄執行，直接導入到 .github/
+git submodule add https://github.com/vincent119/copilot-rules-kit.git .github
 git submodule update --init --recursive
 
-#（可選）鎖定到特定版本 tag（例：v0.2.0）
-cd .github/rules && git fetch --tags && git checkout v0.2.0 && cd -
-git add .gitmodules .github/rules
-git commit -m "chore(rules): add copilot-rules-kit@v0.2.0 as submodule"
+#（可選）鎖定到特定版本 tag（例：v1.0.3）
+cd .github && git fetch --tags && git checkout v1.0.3 && cd -
+git add .gitmodules .github
+git commit -m "chore: add copilot-rules-kit@v1.0.3 as submodule"
 ```
 
 **升版到新 tag：**
 ```bash
-cd .github/rules
+cd .github
 git fetch --tags
-git checkout v0.2.1
+git checkout v1.0.4
 cd -
-git add .github/rules
-git commit -m "chore(rules): bump copilot-rules-kit to v0.2.1"
+git add .github
+git commit -m "chore: upgrade copilot-rules-kit to v1.0.4"
 ```
 
 **CI 注意事項：**
@@ -80,12 +80,12 @@ git submodule update --init --recursive
 ### B. 以 Git Subtree 導入（倉庫不帶 submodule 依賴）
 
 ```bash
-git subtree add --prefix .github/rules https://github.com/vincent119/copilot-rules-kit.git main --squash
+git subtree add --prefix .github https://github.com/vincent119/copilot-rules-kit.git main --squash
 ```
 
 **從上游拉取最新（同分支或 tag）：**
 ```bash
-git subtree pull --prefix .github/rules https://github.com/vincent119/copilot-rules-kit.git main --squash
+git subtree pull --prefix .github https://github.com/vincent119/copilot-rules-kit.git main --squash
 ```
 
 ---
@@ -93,15 +93,15 @@ git subtree pull --prefix .github/rules https://github.com/vincent119/copilot-ru
 ## 腳本使用說明（可於消費端直接使用）
 
 ### 1) `scripts/setup-copilot-submodule.sh`
-**用途**：一鍵將本套件以 **submodule** 形式導入到消費端的 `.github/rules/`，並鎖定到指定版本。
+**用途**：一鍵將本套件以 **submodule** 形式導入到消費端的 `.github/`，並鎖定到指定版本。
 
 **用法**：
 ```bash
-# 預設導入到 .github/rules 並鎖定 v0.2.0
+# 預設導入到 .github 並鎖定 v1.0.3
 bash scripts/setup-copilot-submodule.sh
 
 # 自訂導入目錄與版本
-bash scripts/setup-copilot-submodule.sh .github/rules v0.2.1
+bash scripts/setup-copilot-submodule.sh .github v1.0.4
 ```
 
 **行為**：
@@ -109,7 +109,7 @@ bash scripts/setup-copilot-submodule.sh .github/rules v0.2.1
 - 將 `.gitmodules` 與目標目錄加入版本控制並建立提交
 
 ### 2) `scripts/setup-copilot-subtree.sh`
-**用途**：一鍵以 **subtree** 方式導入到 `.github/rules/`。
+**用途**：一鍵以 **subtree** 方式導入到 `.github/`。
 
 **用法**：
 ```bash
@@ -117,7 +117,7 @@ bash scripts/setup-copilot-submodule.sh .github/rules v0.2.1
 bash scripts/setup-copilot-subtree.sh
 
 # 指定前置目錄與來源 ref（分支或 tag）
-bash scripts/setup-copilot-subtree.sh .github/rules v0.2.1
+bash scripts/setup-copilot-subtree.sh .github v1.0.3
 ```
 
 **行為**：
