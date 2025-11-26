@@ -6,8 +6,10 @@ description: "全域 Copilot / VS Code Agent 專案產生與編輯規範"
 applyTo: "**/*"
 
 extends:
-  common: ".github/copilot-common.md"
+  common: ".github/standards/copilot-common.md"
   vocabulary: ".github/standards/copilot-vocabulary.yaml"
+  commit_message: ".github/standards/copilot-commit-message-instructions.md"
+  pr_description: ".github/standards/copilot-pull-request-description-instructions.md"
 
 global:
   purpose: "確保所有 Copilot 產出內容可編譯、可維護，並符合專案風格"
