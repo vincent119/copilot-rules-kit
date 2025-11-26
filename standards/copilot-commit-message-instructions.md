@@ -17,13 +17,14 @@ aliases: ["/zh-hant/"]
 
 ---
 
-```
+```bash
 <類型 type>[可選的作用範圍 scope]: <描述 description>
 
 [可選的正文 body]
 
 [可選的頁腳 footer]
 ```
+
 ---
 
 <br />
@@ -50,41 +51,48 @@ aliases: ["/zh-hant/"]
 ## 範例
 
 ### 包含描述以及頁腳有重大變更的提交說明
-```
+
+```bash
 feat: allow provided config object to extend other configs
 
 BREAKING CHANGE: `extends` key in config file is now used for extending other config files
 ```
 
 ### 包含用以提示重大變更的 `!` 的提交說明
-```
+
+```text
 feat!: send an email to the customer when a product is shipped
 ```
 
 ### 包含作用範圍和提示重大變更的 `!` 的提交說明
-```
+
+```text
 feat(api)!: send an email to the customer when a product is shipped
 ```
 
 ### 包含 `!` 以及頁腳有重大變更的提交說明
-```
+
+```text
 chore!: drop support for Node 6
 
 BREAKING CHANGE: use JavaScript features not available in Node 6.
 ```
 
 ### 不包含正文的提交說明
-```
+
+```text
 docs: correct spelling of CHANGELOG
 ```
 
 ### 包含作用範圍的提交說明
-```
+
+```text
 feat(lang): add polish language
 ```
 
 ### 正文有多段落以及有多個頁腳的提交說明
-```
+
+```text
 fix: prevent racing of requests
 
 Introduce a request id and a reference to latest request. Dismiss
@@ -136,7 +144,7 @@ Refs: #123
 
 ### 在初始的開發階段，我該如何處理提交說明？
 
-我們建議你可以就像是產品已經發行的那樣去執行。因為通常都會 *有人* 使用你的軟體，即使是你的軟體開發的同事們，他們會希望知道修正了什麼以及有什麼重大變更等資訊。
+我們建議你可以就像是產品已經發行的那樣去執行。因為通常都會 _有人_ 使用你的軟體，即使是你的軟體開發的同事們，他們會希望知道修正了什麼以及有什麼重大變更等資訊。
 
 ### 提交標題中的類型應該要用大寫還是小寫？
 
@@ -169,7 +177,7 @@ Refs: #123
 在合併或是發行這個錯誤之前，我們推薦使用 `git rebase -i` 來編輯提交歷史。
 而在發行之後，根據你使用的工具與流程，會有不同的清理方式。
 
-#### 當你使用 *非* 規範中的類型時，例如：將 `feat` 寫成 `feet`
+#### 當你使用 _非_ 規範中的類型時，例如：將 `feat` 寫成 `feet`
 
 最糟狀況下，即使提交沒有符合慣例式提交的規範，也不會是世界末日。它僅意味著這個提交將會被基於這個規範的工具略過。
 
@@ -186,7 +194,7 @@ Refs: #123
 
 其中一個推薦的方法時使用 `revert` 類型，並在頁腳中參照到被回退的 SHA 雜湊：
 
-```
+```text
 revert: let us never again speak of the noodle incident
 
 Refs: 676104e, a215868
