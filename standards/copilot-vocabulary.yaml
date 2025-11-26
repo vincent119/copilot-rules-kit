@@ -7,8 +7,9 @@
 schemaVersion: 1 # ← 若有結構變更請遞增
 meta:
   owner: "Architecture Team" # ← 維護者團隊／責任人
-  lastUpdated: "2025-10-23" # ← 更新日期（YYYY-MM-DD）
+  lastUpdated: "2025-11-26" # ← 更新日期（YYYY-MM-DD）
   locale: "zh-Hant-TW" # ← 採用繁體中文（台灣習慣）
+  canonical: true # ← 此檔為所有生成用詞的唯一權威來源
   scope:
     - docs # ← 文件／說明
     - comments # ← 程式碼註解
@@ -20,6 +21,7 @@ meta:
     - mapping
   note: >
     本檔只規範「文字用語」。語言／工具格式化（如 gofmt、prettier）依各語言專用檔。
+    Copilot / Agent 生成與 PR 文件應優先採用本檔用詞；若與既有命名衝突，遵循 conflicts.policy。
 
 # -----------------------------------------------------------------------------
 #  全域規範（大小寫、標點、數字與單位、專有名詞）
@@ -515,3 +517,55 @@ extendGuidelines:
   - "動詞優先精準、短字；避免華麗冗語。"
   - "變更既有映射屬重大變更，需 PR 與共識並更新 lastUpdated。"
   - "若與特定語言專用檔衝突，開 PR 說明案例與取捨，並統一到本檔。"
+constraints:
+  language:
+    primary: "English"
+    secondary: "zh-TW (comments only)"
+  ascii_only: true
+  emoji_allowed: false
+
+groups:
+  http:
+    - term: "HTTP client"
+      prefer: "HTTP client"
+      goNaming:
+        type: "Client"
+        package: "client"
+    - term: "transport reuse"
+      prefer: "transport reuse"
+      notes: "Reuse *http.Transport, set timeouts"
+
+  security:
+    - term: "HLS key"
+      prefer: "HLS key"
+      goNaming:
+        type: "Key"
+        field: "key"
+      avoid: ["金鑰", "HLS金鑰"] # 統一英文；中文僅於註解
+
+  auth:
+    - term: "access token"
+      prefer: "access token"
+      goNaming:
+        type: "AccessToken"
+        field: "accessToken"
+      avoid: ["token", "accessTokenString"]
+
+  errors:
+    - term: "not found"
+      prefer: "not found"
+      goNaming:
+        const: "ErrNotFound"
+      style: "lowercase message, no punctuation"
+
+  observability:
+    - term: "trace id"
+      prefer: "trace_id"
+      goNaming:
+        field: "traceID"
+      notes: "structured logging field; zap preferred"
+conflicts:
+  policy:
+    - "Use vocabulary over existing names when conflict occurs."
+    - "Provide alias for 1 release; mark deprecated in changelog."
+    - "Add migration note in PR description and README."
