@@ -86,7 +86,8 @@ This document extends from `copilot-common.md` and `copilot-vocabulary.yaml`.
 ---
 
 建議放置路徑：
-```
+
+```text
 .github/
  ├─ copilot-instructions.md   ← 全域設定（此檔案）
  ├─ go.instructions.md        ← Go 專用
