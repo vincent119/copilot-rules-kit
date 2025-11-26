@@ -1,9 +1,9 @@
 # Copilot 全域產生與編輯規範（YAML 版）
 # 用於 Agent / Chat / Inline 模式
-# 建議放置於 .github/copilot-instructions.md
+# 建議放置於 .github/copilot-instructions.yaml
 
 description: "全域 Copilot / VS Code Agent 專案產生與編輯規範"
-applyTo: "**/*.go,**/*.md,**/*.yaml,**/go.mod,**/go.sum"
+applyTo: "**/*"
 
 extends:
   common: ".github/copilot-common.md"
@@ -56,6 +56,12 @@ rules:
   - name: "Specialized Language Instructions"
     references:
       go: ".github/instructions/go.instructions.md"
+      python: ".github/instructions/python.instructions.md"
+      typescript: ".github/instructions/ts.instructions.md"
+      bash: ".github/instructions/bash.instructions.md"
+      yaml: ".github/instructions/yaml.instructions.md"
+      helm: ".github/instructions/helm.instructions.md"
+      pulumi: ".github/instructions/pulumi.instructions.md"
 
 vocabulary_reference:
   note: "統一引用 .github/standards/copilot-vocabulary.yaml。"
@@ -63,20 +69,47 @@ vocabulary_reference:
 validation:
   checklist:
     - "確認程式碼可編譯 / 可執行"
-    - "gofmt -s 與 goimports 皆無差異"
-    - "通過 go vet 與靜態分析（如 golangci-lint）"
-    - "單元測試通過（含 -race）；涵蓋率門檻符合專案設定"
-    - "go mod tidy 後無差異（go.mod / go.sum 一致）"
-    - "遵循 .github/instructions/go.instructions.md：context 為第一參數、errors.Is/As、imports 分群"
+    - "通過對應語言的 formatter 與 linter 驗證"
+    - "單元測試通過；涵蓋率門檻符合專案設定"
+    - "遵循對應語言的 instructions 檔案規範"
     - "保留原始 header、license、註解"
     - "無未使用變數或匯入"
     - "語意與既有邏輯一致"
     - "文件同步更新"
+  language_specific:
+    go:
+      - "gofmt -s 與 goimports 皆無差異"
+      - "通過 go vet 與靜態分析（如 golangci-lint）"
+      - "單元測試通過（含 -race）"
+      - "go mod tidy 後無差異（go.mod / go.sum 一致）"
+      - "context 為第一參數、使用 errors.Is/As、imports 分群"
+    python:
+      - "通過 black、isort、flake8 或 ruff 驗證"
+      - "type hints 正確且通過 mypy 檢查"
+      - "pytest 測試通過"
+    typescript:
+      - "通過 prettier、eslint 驗證"
+      - "TypeScript 編譯無錯誤"
+      - "Jest/Vitest 測試通過"
+    bash:
+      - "通過 shellcheck 驗證"
+      - "使用 set -euo pipefail"
+    yaml:
+      - "通過 yamllint 驗證"
+      - "縮排一致（2 空格或 Tab）"
 
 placement:
   recommended_path: ".github/copilot-instructions.yaml"
   related_files:
     - ".github/instructions/go.instructions.md"
+    - ".github/instructions/python.instructions.md"
+    - ".github/instructions/ts.instructions.md"
+    - ".github/instructions/bash.instructions.md"
+    - ".github/instructions/yaml.instructions.md"
+    - ".github/instructions/helm.instructions.md"
+    - ".github/instructions/pulumi.instructions.md"
+    - ".github/standards/copilot-common.md"
+    - ".github/standards/copilot-vocabulary.yaml"
 
 output_requirements:
   description: "產出內容要求"
@@ -84,4 +117,5 @@ output_requirements:
     - "輸出 **完整可編譯檔案**或明確 **diff**。"
     - "diff 須使用區塊標示以保持最小修改：\n  // ...existing code...\n  { changed code }\n  // ...existing code..."
     - "多檔變更列出：檔名 / 變更摘要 / 風險。"
-    - "新增外部套件需附：`go get <module>@<version>` 與風險評估。"
+    - "新增外部套件需附安裝指令與風險評估（如：`go get`、`pip install`、`npm install`）。"
+    - "遵循對應語言的 instructions 檔案中的特定要求。"
