@@ -1,8 +1,12 @@
 ---
-trigger: always_on
+trigger:
+  patterns:
+    - "**/*.go"
+    - "**/go.mod"
+    - "**/go.sum"
 ---
 
-# Go 核心開發規範（Always-On 精簡版）
+# Go 核心開發規範（精簡版）
 
 本檔僅包含**所有 Go 程式碼都需要的基礎規則**。進階主題（DDD、gRPC、Migration 等）已拆分為獨立 Skills，按需載入。
 
