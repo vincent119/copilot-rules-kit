@@ -51,7 +51,8 @@ function parseArgs() {
     mode: 'full', // full, core-only, skills-only
     skills: null,
     ide: null,
-    help: false
+    help: false,
+    debug: false
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -61,6 +62,9 @@ function parseArgs() {
       case '--help':
       case '-h':
         options.help = true;
+        break;
+      case '--debug':
+        options.debug = true;
         break;
       case '--vscode':
         options.ide = 'vscode';
@@ -116,6 +120,7 @@ ${colors.yellow}選項：${colors.reset}
     --core-only         只安裝核心規範（不包含 Skills）
     --skills-only       只安裝 Skills（不包含核心規範）
     --skills <list>     只安裝特定 Skills（逗號分隔）
+    --debug             顯示詳細的除錯資訊
     --help, -h          顯示此幫助訊息
 
 ${colors.yellow}範例：${colors.reset}
@@ -180,9 +185,71 @@ function copyRecursive(src, dest) {
   }
 }
 
+function findSourceDir() {
+  // 嘗試多種路徑來找到 .agent_agy 目錄
+  const candidates = [
+    // 1. 相對於 cli/ 目錄（本地開發）
+    path.join(__dirname, '..', '.agent_agy'),
+    // 2. 相對於執行目錄（npm link）
+    path.join(process.cwd(), '.agent_agy'),
+    // 3. 相對於腳本路徑的上層（npx 可能的位置）
+    path.join(path.dirname(__dirname), '.agent_agy'),
+    // 4. node_modules 內（npx 安裝後）
+    path.join(__dirname, '..', '..', '@vincent119', 'go-copilot-rules', '.agent_agy'),
+    // 5. 檢查是否在 package 根目錄
+    path.join(__dirname, '.agent_agy'),
+  ];
+
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      // 確認是否包含 skills 目錄
+      const skillsDir = path.join(candidate, 'skills');
+      if (fs.existsSync(skillsDir)) {
+        return candidate;
+      }
+    }
+  }
+
+  return null;
+}
+
 function install(options) {
-  const packageRoot = path.dirname(__dirname);
-  const sourceDir = path.join(packageRoot, '.agent_agy');
+  const sourceDir = findSourceDir();
+
+  if (options.debug) {
+    log('', 'reset');
+    log('🔍 Debug 資訊：', 'cyan');
+    log(`   __dirname: ${__dirname}`, 'reset');
+    log(`   __filename: ${__filename}`, 'reset');
+    log(`   process.cwd(): ${process.cwd()}`, 'reset');
+    log(`   sourceDir: ${sourceDir || '(未找到)'}`, 'reset');
+    log('', 'reset');
+  }
+
+  // 檢查來源目錄是否存在
+  if (!sourceDir) {
+    log('', 'reset');
+    log('❌ 錯誤：找不到 .agent_agy 目錄', 'red');
+    log('', 'reset');
+    log('🔍 嘗試過的位置：', 'yellow');
+    log(`   1. ${path.join(__dirname, '..', '.agent_agy')}`, 'reset');
+    log(`   2. ${path.join(process.cwd(), '.agent_agy')}`, 'reset');
+    log(`   3. ${path.join(path.dirname(__dirname), '.agent_agy')}`, 'reset');
+    log('', 'reset');
+    log('💡 可能的原因：', 'cyan');
+    log('   1. Package 尚未正確安裝', 'reset');
+    log('   2. 檔案結構不完整', 'reset');
+    log('', 'reset');
+    log('🔧 解決方案：', 'cyan');
+    log('   使用手動安裝方式：', 'reset');
+    log('   git clone https://github.com/vincent119/copilot-rules-kit.git /tmp/copilot-rules-kit', 'blue');
+    log('   mkdir -p .kiro/skills', 'blue');
+    log('   cp -r /tmp/copilot-rules-kit/.agent_agy/skills/* .kiro/skills/', 'blue');
+    log('', 'reset');
+    log('📖 完整安裝指南：', 'cyan');
+    log('   https://github.com/vincent119/copilot-rules-kit/blob/main/.agent_agy/INSTALLATION.md', 'blue');
+    process.exit(1);
+  }
 
   // 如果沒有指定路徑，自動偵測
   if (!options.path) {
