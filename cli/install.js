@@ -24,24 +24,28 @@ function detectIDE() {
 
   // 檢查是否在專案目錄中
   if (fs.existsSync(path.join(cwd, '.kiro'))) {
-    return { name: 'kiro', defaultPath: '.kiro/skills' };
+    return { name: 'kiro', defaultPath: '.kiro' };
   }
 
   if (fs.existsSync(path.join(cwd, '.cursor'))) {
-    return { name: 'cursor', defaultPath: '.cursor/skills' };
+    return { name: 'cursor', defaultPath: '.cursor' };
+  }
+
+  if (fs.existsSync(path.join(cwd, '.agent'))) {
+    return { name: 'antigravity', defaultPath: '.agent' };
   }
 
   if (fs.existsSync(path.join(cwd, '.vscode'))) {
-    return { name: 'vscode', defaultPath: '.agent_agy' };
+    return { name: 'vscode', defaultPath: '.github' };
   }
 
   // 檢查是否有全域 Kiro 配置
   if (fs.existsSync(path.join(homeDir, '.kiro'))) {
-    return { name: 'kiro-global', defaultPath: path.join(homeDir, '.kiro/skills') };
+    return { name: 'kiro-global', defaultPath: path.join(homeDir, '.kiro') };
   }
 
   // 預設為 VS Code
-  return { name: 'vscode', defaultPath: '.agent_agy' };
+  return { name: 'vscode', defaultPath: '.github' };
 }
 
 function parseArgs() {
@@ -68,20 +72,24 @@ function parseArgs() {
         break;
       case '--vscode':
         options.ide = 'vscode';
-        options.path = '.agent_agy';
+        options.path = '.github';
         break;
       case '--cursor':
         options.ide = 'cursor';
-        options.path = '.cursor/skills';
+        options.path = '.cursor';
+        break;
+      case '--antigravity':
+        options.ide = 'antigravity';
+        options.path = '.agent';
         break;
       case '--kiro':
         options.ide = 'kiro';
-        options.path = '.kiro/skills';
+        options.path = '.kiro';
         break;
       case '--kiro-global':
         options.ide = 'kiro-global';
         const homeDir = require('os').homedir();
-        options.path = path.join(homeDir, '.kiro/skills');
+        options.path = path.join(homeDir, '.kiro');
         break;
       case '--path':
         options.path = args[++i];
@@ -112,10 +120,11 @@ ${colors.yellow}用法：${colors.reset}
     npx @vincent119/go-copilot-rules [選項]
 
 ${colors.yellow}選項：${colors.reset}
-    --vscode            安裝到 VS Code 預設位置 (.agent_agy/)
-    --cursor            安裝到 Cursor 預設位置 (.cursor/skills/)
-    --kiro              安裝到 Kiro 專案位置 (.kiro/skills/)
-    --kiro-global       安裝到 Kiro 全域位置 (~/.kiro/skills/)
+    --vscode            安裝到 VS Code 預設位置 (.github/)
+    --cursor            安裝到 Cursor 預設位置 (.cursor/)
+    --antigravity       安裝到 Antigravity 預設位置 (.agent/)
+    --kiro              安裝到 Kiro 專案位置 (.kiro/)
+    --kiro-global       安裝到 Kiro 全域位置 (~/.kiro/)
     --path <dir>        安裝到自訂路徑
     --core-only         只安裝核心規範（不包含 Skills）
     --skills-only       只安裝 Skills（不包含核心規範）
@@ -132,6 +141,9 @@ ${colors.yellow}範例：${colors.reset}
 
     # 安裝到 Cursor
     npx @vincent119/go-copilot-rules --cursor
+
+    # 安裝到 Antigravity
+    npx @vincent119/go-copilot-rules --antigravity
 
     # 安裝到 Kiro （專案）
     npx @vincent119/go-copilot-rules --kiro
@@ -243,8 +255,9 @@ function install(options) {
     log('🔧 解決方案：', 'cyan');
     log('   使用手動安裝方式：', 'reset');
     log('   git clone https://github.com/vincent119/copilot-rules-kit.git /tmp/copilot-rules-kit', 'blue');
-    log('   mkdir -p .kiro/skills', 'blue');
-    log('   cp -r /tmp/copilot-rules-kit/.agent_agy/skills/* .kiro/skills/', 'blue');
+    log('   mkdir -p .kiro', 'blue');
+    log('   cp -r /tmp/copilot-rules-kit/.agent_agy/skills .kiro/', 'blue');
+    log('   cp -r /tmp/copilot-rules-kit/.agent_agy/rules .kiro/', 'blue');
     log('', 'reset');
     log('📖 完整安裝指南：', 'cyan');
     log('   https://github.com/vincent119/copilot-rules-kit/blob/main/.agent_agy/INSTALLATION.md', 'blue');
@@ -305,13 +318,15 @@ function install(options) {
       fs.mkdirSync(rulesDir, { recursive: true });
       copyRecursive(path.join(sourceDir, 'rules'), rulesDir);
 
-      // 複製 skills 目錄內的所有 go-* 目錄到目標目錄（不保留 skills/ 這一層）
+      // 複製 skills 目錄（保留 skills/ 這一層）
+      const skillsDestDir = path.join(targetDir, 'skills');
+      fs.mkdirSync(skillsDestDir, { recursive: true });
       const skillsSrcDir = path.join(sourceDir, 'skills');
       if (fs.existsSync(skillsSrcDir)) {
         fs.readdirSync(skillsSrcDir).forEach(skillName => {
           const skillSrc = path.join(skillsSrcDir, skillName);
           if (fs.statSync(skillSrc).isDirectory()) {
-            copyRecursive(skillSrc, path.join(targetDir, skillName));
+            copyRecursive(skillSrc, path.join(skillsDestDir, skillName));
           }
         });
       }
@@ -332,12 +347,14 @@ function install(options) {
 
     case 'skills-only':
       log('   複製所有 Skills', 'cyan');
+      const skillsOnlyDestDir = path.join(targetDir, 'skills');
+      fs.mkdirSync(skillsOnlyDestDir, { recursive: true });
       const skillsOnlySrcDir = path.join(sourceDir, 'skills');
       if (fs.existsSync(skillsOnlySrcDir)) {
         fs.readdirSync(skillsOnlySrcDir).forEach(skillName => {
           const skillSrc = path.join(skillsOnlySrcDir, skillName);
           if (fs.statSync(skillSrc).isDirectory()) {
-            copyRecursive(skillSrc, path.join(targetDir, skillName));
+            copyRecursive(skillSrc, path.join(skillsOnlyDestDir, skillName));
           }
         });
       }
@@ -348,11 +365,14 @@ function install(options) {
   if (options.skills) {
     log('📋 複製選定的 Skills...', 'blue');
 
+    const skillsTargetDir = path.join(targetDir, 'skills');
+    fs.mkdirSync(skillsTargetDir, { recursive: true });
+
     const skillList = options.skills.split(',').map(s => s.trim());
     skillList.forEach(skill => {
       const skillSrc = path.join(sourceDir, 'skills', skill);
       if (fs.existsSync(skillSrc)) {
-        const skillDest = path.join(targetDir, skill);
+        const skillDest = path.join(skillsTargetDir, skill);
         copyRecursive(skillSrc, skillDest);
         log(`   • ${skill}`, 'green');
       } else {
