@@ -24,6 +24,29 @@ npx @vincent119/go-copilot-rules --skills "go-ddd,go-grpc,go-testing-advanced"
 
 ---
 
+## 🔗 與其他 Skills 套件整合
+
+### 搭配 antigravity-awesome-skills 使用
+
+如果你也在使用 [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)（涵蓋 1,300+ 通用 Skills），可以組合安裝：
+
+```bash
+# 先安裝通用 Skills
+npx antigravity-awesome-skills
+
+# 再安裝 Go 專用 Skills
+npx @vincent119/go-copilot-rules
+```
+
+**優勢**：
+- **copilot-rules-kit**：專注於 Go 開發（DDD、gRPC、Testing 等深度規範）
+- **antigravity**：廣泛覆蓋（Python、JavaScript、DevOps、Security 等 1,300+ Skills）
+- **兩者互補**：antigravity 提供廣度，copilot-rules-kit 提供 Go 生態的深度
+
+📖 詳細比較與組合策略請見 [INSTALLATION.md#與其他方案比較](INSTALLATION.md#與其他方案比較)
+
+---
+
 ## 概述
 
 本目錄包含 **Go 開發規範的模組化拆分版本**，將原本的三個大型指南檔案（總計 ~7,500 tokens）拆分為：

@@ -291,14 +291,37 @@ function install(options) {
   switch (options.mode) {
     case 'full':
       log('   複製完整規範（核心 + 所有 Skills）', 'cyan');
-      copyRecursive(sourceDir, targetDir);
+
+      // 複製文件檔案
+      ['README.md', 'INSTALLATION.md', 'QUICK_START.md', 'SKILLS_INDEX.md'].forEach(file => {
+        const fileSrc = path.join(sourceDir, file);
+        if (fs.existsSync(fileSrc)) {
+          fs.copyFileSync(fileSrc, path.join(targetDir, file));
+        }
+      });
+
+      // 複製 rules 目錄
+      const rulesDir = path.join(targetDir, 'rules');
+      fs.mkdirSync(rulesDir, { recursive: true });
+      copyRecursive(path.join(sourceDir, 'rules'), rulesDir);
+
+      // 複製 skills 目錄內的所有 go-* 目錄到目標目錄（不保留 skills/ 這一層）
+      const skillsSrcDir = path.join(sourceDir, 'skills');
+      if (fs.existsSync(skillsSrcDir)) {
+        fs.readdirSync(skillsSrcDir).forEach(skillName => {
+          const skillSrc = path.join(skillsSrcDir, skillName);
+          if (fs.statSync(skillSrc).isDirectory()) {
+            copyRecursive(skillSrc, path.join(targetDir, skillName));
+          }
+        });
+      }
       break;
 
     case 'core-only':
       log('   複製核心規範', 'cyan');
-      const rulesDir = path.join(targetDir, 'rules');
-      fs.mkdirSync(rulesDir, { recursive: true });
-      copyRecursive(path.join(sourceDir, 'rules'), rulesDir);
+      const coreRulesDir = path.join(targetDir, 'rules');
+      fs.mkdirSync(coreRulesDir, { recursive: true });
+      copyRecursive(path.join(sourceDir, 'rules'), coreRulesDir);
 
       // 複製 README
       const readmeSrc = path.join(sourceDir, 'README.md');
@@ -309,23 +332,27 @@ function install(options) {
 
     case 'skills-only':
       log('   複製所有 Skills', 'cyan');
-      const skillsDir = path.join(targetDir, 'skills');
-      fs.mkdirSync(skillsDir, { recursive: true });
-      copyRecursive(path.join(sourceDir, 'skills'), skillsDir);
+      const skillsOnlySrcDir = path.join(sourceDir, 'skills');
+      if (fs.existsSync(skillsOnlySrcDir)) {
+        fs.readdirSync(skillsOnlySrcDir).forEach(skillName => {
+          const skillSrc = path.join(skillsOnlySrcDir, skillName);
+          if (fs.statSync(skillSrc).isDirectory()) {
+            copyRecursive(skillSrc, path.join(targetDir, skillName));
+          }
+        });
+      }
       break;
   }
 
   // 如果指定了特定 Skills
   if (options.skills) {
     log('📋 複製選定的 Skills...', 'blue');
-    const skillsDir = path.join(targetDir, 'skills');
-    fs.mkdirSync(skillsDir, { recursive: true });
 
     const skillList = options.skills.split(',').map(s => s.trim());
     skillList.forEach(skill => {
       const skillSrc = path.join(sourceDir, 'skills', skill);
       if (fs.existsSync(skillSrc)) {
-        const skillDest = path.join(skillsDir, skill);
+        const skillDest = path.join(targetDir, skill);
         copyRecursive(skillSrc, skillDest);
         log(`   • ${skill}`, 'green');
       } else {
