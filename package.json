@@ -1,0 +1,47 @@
+{
+  "name": "@vincent119/go-copilot-rules",
+  "version": "1.0.0",
+  "description": "Professional Go development rules and skills for GitHub Copilot, Cursor, and other AI coding assistants",
+  "keywords": [
+    "copilot",
+    "github-copilot",
+    "cursor",
+    "ai-coding",
+    "golang",
+    "go",
+    "copilot-skills",
+    "copilot-rules",
+    "ddd",
+    "grpc",
+    "testing",
+    "best-practices"
+  ],
+  "author": "vincent119",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vincent119/copilot-rules-kit.git"
+  },
+  "homepage": "https://github.com/vincent119/copilot-rules-kit#readme",
+  "bugs": {
+    "url": "https://github.com/vincent119/copilot-rules-kit/issues"
+  },
+  "bin": {
+    "go-copilot-rules": "./cli/install.js"
+  },
+  "files": [
+    ".agent_agy/",
+    "cli/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

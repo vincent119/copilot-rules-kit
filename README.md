@@ -9,6 +9,28 @@
 
 ---
 
+## 🚀 快速開始（Go Copilot Skills）
+
+如果你只需要安裝 **Go 開發規範與 Skills**（`.agent_agy/` 目錄），請使用：
+
+```bash
+# NPX 一鍵安裝（推薦）
+npx @vincent119/go-copilot-rules
+
+# 或使用安裝腳本
+bash <(curl -s https://raw.githubusercontent.com/vincent119/copilot-rules-kit/main/scripts/quick-install.sh)
+```
+
+**支援的安裝選項**：
+- `--vscode` - 安裝到 VS Code Copilot 預設路徑（`.agent_agy/`）
+- `--cursor` - 安裝到 Cursor 預設路徑（`.cursor/skills/`）
+- `--skills "go-ddd,go-grpc"` - 只安裝特定 Skills
+- `--help` - 查看所有選項
+
+📖 **完整文件**：[.agent_agy/INSTALLATION.md](.agent_agy/INSTALLATION.md)
+
+---
+
 ## 內容構成（中央規範倉庫）
 
 ```text
