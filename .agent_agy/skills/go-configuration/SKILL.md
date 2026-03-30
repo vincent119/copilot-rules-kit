@@ -6,9 +6,25 @@ description: |
 
   **適用場景**：使用 Viper、環境變數管理、Secrets 處理、設定驗證、動態重載設定、
   多環境配置（dev/staging/prod）、Kubernetes ConfigMap/Secret 整合。
-
-  **關鍵字**：configuration, viper, environment variables, secrets, validation, env vars,
-  config reload, 12-factor, configmap, kubernetes config, dotenv, yaml config
+keywords:
+  - configuration
+  - viper
+  - environment variables
+  - secrets
+  - validation
+  - env vars
+  - config reload
+  - 12-factor
+  - configmap
+  - kubernetes config
+  - dotenv
+  - yaml config
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 設定管理規範

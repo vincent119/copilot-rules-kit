@@ -6,9 +6,27 @@ description: |
 
   **適用場景**：實作 gRPC server、設計 RPC API、配置 Interceptor、處理 gRPC 錯誤、
   實作健康檢查、gRPC 客戶端開發、Kubernetes gRPC 部署。
-
-  **關鍵字**：grpc, protobuf, proto, rpc, interceptor, health check, deadline, context,
-  grpc server, grpc client, buf, grpc-gateway, grpc status codes, graceful stop
+keywords:
+  - grpc
+  - protobuf
+  - proto
+  - rpc
+  - interceptor
+  - health check
+  - deadline
+  - context
+  - grpc server
+  - grpc client
+  - buf
+  - grpc-gateway
+  - grpc status codes
+  - graceful stop
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go gRPC 完整實作規範

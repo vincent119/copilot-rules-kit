@@ -6,9 +6,29 @@ description: |
 
   **適用場景**：實作結構化日誌、設計 Prometheus Metrics、整合 OpenTelemetry Tracing、
   配置日誌欄位、實作 Context 傳遞、分散式追蹤、監控告警。
-
-  **關鍵字**：logging, structured logging, zap, slog, prometheus, metrics, counter, gauge,
-  histogram, opentelemetry, tracing, trace id, span, observability, monitoring, alerting
+keywords:
+  - logging
+  - structured logging
+  - zap
+  - slog
+  - prometheus
+  - metrics
+  - counter
+  - gauge
+  - histogram
+  - opentelemetry
+  - tracing
+  - trace id
+  - span
+  - observability
+  - monitoring
+  - alerting
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 可觀測性規範

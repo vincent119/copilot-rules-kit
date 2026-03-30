@@ -6,9 +6,22 @@ description: |
 
   **適用場景**：參考完整實作範例、學習最佳實務、快速啟動新專案、程式碼審查參考、
   架構設計模板、HTTP、gRPC、Database 整合範例。
-
-  **關鍵字**：examples, code examples, http client example, repository pattern,
-  use case example, handler example, service example, best practices, template
+keywords:
+  - examples
+  - code examples
+  - http client example
+  - repository pattern
+  - use case example
+  - handler example
+  - service example
+  - best practices
+  - template
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 實作範例庫

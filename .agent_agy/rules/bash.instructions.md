@@ -1,14 +1,10 @@
 ---
-description: 'Bash / Shell Script 撰寫與自動產生規範'
-trigger:
-  patterns:
-    - "**/*.sh"
-    - "**/*.bash"
+description: Bash/Shell 腳本開發規範：安全性、錯誤處理、程式碼風格與最佳實踐
+
+applyTo: '**/*.sh,**/*.bash'
 ---
 
-# Bash / Shell Script 指南（for Copilot & VS Code Agent）
-
-本檔延伸自 .github/copilot-common.md 與 .github/copilot-vocabulary.yaml，統一格式、安全與用詞規範。
+# Bash / Shell Script 開發規範
 
 ---
 
@@ -126,10 +122,3 @@ log_error() { echo "[ERROR] $*" >&2; }
 - [ ] 所有外部命令有錯誤檢查
 - [ ] 無多餘 `sudo` 或 `eval`
 - [ ] 幫助訊息與參數解析正常
-
----
-
-放置路徑：
-```
-.github/standards/bash.instructions.md
-```

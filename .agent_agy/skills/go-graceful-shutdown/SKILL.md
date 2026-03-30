@@ -6,9 +6,24 @@ description: |
 
   **適用場景**：實作 HTTP Server 優雅關機、gRPC Server 停止、Background Worker 終止、
   Kubernetes 部署配置、處理 SIGTERM/SIGINT、實作 preStop hook、避免請求中斷。
-
-  **關鍵字**：graceful shutdown, signal handling, SIGTERM, SIGINT, http shutdown,
-  grpc graceful stop, kubernetes, prestop hook, context cancellation, drain, worker shutdown
+keywords:
+  - graceful shutdown
+  - signal handling
+  - sigterm
+  - sigint
+  - http shutdown
+  - grpc graceful stop
+  - kubernetes
+  - prestop hook
+  - context cancellation
+  - drain
+  - worker shutdown
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 優雅關機（Graceful Shutdown）規範

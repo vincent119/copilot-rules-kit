@@ -1,6 +1,21 @@
 ---
 name: changelog-generator
 description: Transform Git commits into user-facing changelogs. Auto-categorize, filter noise, generate professional Release Notes.
+keywords:
+  - changelog
+  - release notes
+  - git log
+  - version release
+  - commit history
+  - keep a changelog
+  - semantic versioning
+  - app store update
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Changelog Generator

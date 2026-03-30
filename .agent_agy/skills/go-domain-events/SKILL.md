@@ -6,9 +6,23 @@ description: |
 
   **適用場景**：DDD Domain Events、實作 Event Bus、Outbox Pattern、冪等性設計、
   非同步事件處理、微服務溝通、Event Sourcing、解耦業務邏輯。
-
-  **關鍵字**：domain events, event bus, outbox pattern, idempotency, event sourcing,
-  async events, event-driven, message queue, event publishing, saga pattern
+keywords:
+  - domain events
+  - event bus
+  - outbox pattern
+  - idempotency
+  - event sourcing
+  - async events
+  - event-driven
+  - message queue
+  - event publishing
+  - saga pattern
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go Domain Events 實作規範

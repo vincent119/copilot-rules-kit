@@ -1,6 +1,22 @@
 ---
 name: release-workflow
 description: Standard release workflow - Test, tag, push. Supports Go, Python, Node.js, Bash, YAML projects.
+keywords:
+  - release
+  - version
+  - tag
+  - git tag
+  - semantic versioning
+  - semver
+  - publish
+  - deploy
+  - release workflow
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Release Workflow

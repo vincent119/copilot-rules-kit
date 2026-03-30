@@ -1,6 +1,22 @@
 ---
 name: aws-eks-ami
 description: 查詢 Amazon EKS 專用 AMI (AL2023 x86_64)。支援多版本、多地區、中英文地名查詢。
+keywords:
+  - eks
+  - ami
+  - amazon linux
+  - al2023
+  - worker node
+  - node group
+  - kubernetes version
+  - aws region
+  - eks optimized ami
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Amazon EKS AMI 查詢工具
@@ -15,29 +31,43 @@ description: 查詢 Amazon EKS 專用 AMI (AL2023 x86_64)。支援多版本、�
 - 比較不同地區的 AMI 版本
 - 查詢最新可用的 EKS Node AMI
 
+## 腳本路徑
+
+此技能的腳本位於技能目錄下。執行前需先定位 `SKILL_DIR`：
+
+```bash
+# 自動定位技能目錄（相容 Kiro / Claude Code / VS Code Copilot / Antigravity 等 Agent 環境）
+SKILL_DIR="$(find . \
+  .agent_agy .agent .kiro .claude .github \
+  ~/.agent_agy ~/.agent ~/.kiro ~/.claude \
+  -maxdepth 5 -path '*/skills/aws-eks-ami/scripts' -type d 2>/dev/null | head -1)"
+```
+
+Agent 執行時應自動解析此路徑，使用者無需手動設定。
+
 ## 查詢方式
 
 ### 1. 預設查詢
 查詢 K8s 1.33 版本，東京地區 (ap-northeast-1)：
 ```bash
-./scripts/get-aws-eks-ami.sh
+bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```
 
 ### 2. 指定 Kubernetes 版本
 ```bash
-K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```
 
 ### 3. 指定地區（支援中英文）
 ```bash
 # 使用英文地名
-REGION='Tokyo' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+REGION='Tokyo' K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 
 # 使用中文地名
-REGION='東京' K8S_VERSION='1.31' ./scripts/get-aws-eks-ami.sh
+REGION='東京' K8S_VERSION='1.31' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 
 # 使用 AWS Region Code
-REGION='us-west-2' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+REGION='us-west-2' K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```
 
 ## 支援的地區
@@ -100,21 +130,21 @@ REGION='us-west-2' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
 ### 案例 1: 新建 EKS Node Group
 ```bash
 # 查詢生產環境使用的最新 AMI
-REGION='Tokyo' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+REGION='Tokyo' K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```
 
 ### 案例 2: 多地區部署
 ```bash
 # 東京地區
-REGION='Tokyo' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+REGION='Tokyo' K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 
 # 新加坡地區
-REGION='Singapore' K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+REGION='Singapore' K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```
 
 ### 案例 3: 版本升級
 ```bash
 # 比較不同版本的 AMI
-K8S_VERSION='1.31' ./scripts/get-aws-eks-ami.sh
-K8S_VERSION='1.32' ./scripts/get-aws-eks-ami.sh
+K8S_VERSION='1.31' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
+K8S_VERSION='1.32' bash "${SKILL_DIR}/get-aws-eks-ami.sh"
 ```

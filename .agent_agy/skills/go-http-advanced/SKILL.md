@@ -6,9 +6,25 @@ description: |
 
   **適用場景**：實作 HTTP Client、設計重試策略、處理 Body 重播、Multipart 檔案上傳、
   配置 Connection Pool、逾時管理、Context 取消、HTTP Middleware。
-
-  **關鍵字**：http client, http transport, retry, backoff, connection pool, timeout,
-  context, multipart upload, body replay, middleware, http.Client, httpdo
+keywords:
+  - http client
+  - http transport
+  - retry
+  - backoff
+  - connection pool
+  - timeout
+  - context
+  - multipart upload
+  - body replay
+  - middleware
+  - http.Client
+  - httpdo
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go HTTP 進階實作規範

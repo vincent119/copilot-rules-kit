@@ -6,9 +6,24 @@ description: |
 
   **適用場景**：設計可測試的架構、使用 Fx/Wire、實作 Repository Interface、
   Mock 依賴、模組化系統、Lifecycle Hook、測試隔離。
-
-  **關鍵字**：dependency injection, uber fx, google wire, interface design, constructor,
-  mock, testable code, lifecycle, module, provider, invoke
+keywords:
+  - dependency injection
+  - uber fx
+  - google wire
+  - interface design
+  - constructor
+  - mock
+  - testable code
+  - lifecycle
+  - module
+  - provider
+  - invoke
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 依賴注入規範

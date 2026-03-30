@@ -1,6 +1,25 @@
 ---
 name: k8s-debug
 description: Kubernetes troubleshooting workflow - Pod status, logs, events, exec, and resource monitoring.
+keywords:
+  - kubernetes
+  - k8s
+  - kubectl
+  - pod
+  - crashloopbackoff
+  - imagepullbackoff
+  - oomkilled
+  - troubleshooting
+  - debug
+  - logs
+  - events
+  - port-forward
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # K8s Debugging Workflow

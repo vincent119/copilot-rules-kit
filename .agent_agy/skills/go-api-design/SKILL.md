@@ -6,9 +6,24 @@ description: |
 
   **適用場景**：設計 RESTful API、實作 API 版本控制、定義統一回應格式、分頁與篩選、
   撰寫 OpenAPI Spec、棄用 API 版本、錯誤碼定義。
-
-  **關鍵字**：api design, rest api, json envelope, api versioning, pagination, swagger,
-  openapi, deprecation, http status code, response format, api best practices
+keywords:
+  - api design
+  - rest api
+  - json envelope
+  - api versioning
+  - pagination
+  - swagger
+  - openapi
+  - deprecation
+  - http status code
+  - response format
+  - api best practices
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go API 設計與版本管理規範

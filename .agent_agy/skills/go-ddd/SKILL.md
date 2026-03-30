@@ -6,10 +6,27 @@ description: |
 
   **適用場景**：設計微服務架構、規劃專案目錄結構、實作 DDD 分層、定義領域模型、
   拆分 Bounded Context、設計 Repository 介面。
-
-  **關鍵字**：DDD, domain driven design, bounded context, aggregate, entity, value object,
-  repository pattern, domain layer, application layer, infrastructure layer, delivery layer,
-  目錄結構, 專案架構, 微服務, monolith to microservices
+keywords:
+  - ddd
+  - domain driven design
+  - bounded context
+  - aggregate
+  - entity
+  - value object
+  - repository pattern
+  - domain layer
+  - application layer
+  - infrastructure layer
+  - delivery layer
+  - project structure
+  - microservices
+  - monolith to microservices
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go DDD 架構設計規範

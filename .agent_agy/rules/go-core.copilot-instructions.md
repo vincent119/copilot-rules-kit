@@ -1,9 +1,7 @@
 ---
-trigger:
-  patterns:
-    - "**/*.go"
-    - "**/go.mod"
-    - "**/go.sum"
+
+applyTo: "**/*.go,**/go.mod,**/go.sum"
+
 ---
 
 # Go 核心開發規範（精簡版）

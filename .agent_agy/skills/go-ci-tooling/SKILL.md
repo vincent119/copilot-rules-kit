@@ -6,9 +6,24 @@ description: |
 
   **適用場景**：設計 CI/CD Pipeline、配置 golangci-lint、撰寫 Makefile、
   Docker 多階段建置、測試自動化、程式碼品質檢查、GitHub Actions。
-
-  **關鍵字**：ci/cd, makefile, golangci-lint, github actions, docker, pre-commit,
-  test coverage, lint, build automation, continuous integration, pipeline
+keywords:
+  - ci/cd
+  - makefile
+  - golangci-lint
+  - github actions
+  - docker
+  - pre-commit
+  - test coverage
+  - lint
+  - build automation
+  - continuous integration
+  - pipeline
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go CI/CD 與工具配置規範

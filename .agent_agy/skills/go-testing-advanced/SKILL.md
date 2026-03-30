@@ -6,10 +6,31 @@ description: |
 
   **適用場景**：撰寫單元測試、設計 Mock、實作整合測試、效能測試（Benchmark）、
   模糊測試（Fuzz）、提升測試覆蓋率、測試 Repository/Use Case。
-
-  **關鍵字**：testing, unit test, integration test, mock, gomock, uber-go/mock, mockery,
-  table driven test, benchmark, fuzz testing, test coverage, testify, test fixtures,
-  test doubles, test pyramid, t.Helper, t.Cleanup, t.Context
+keywords:
+  - testing
+  - unit test
+  - integration test
+  - mock
+  - gomock
+  - uber-go/mock
+  - mockery
+  - table driven test
+  - benchmark
+  - fuzz testing
+  - test coverage
+  - testify
+  - test fixtures
+  - test doubles
+  - test pyramid
+  - t.Helper
+  - t.Cleanup
+  - t.Context
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go 進階測試策略

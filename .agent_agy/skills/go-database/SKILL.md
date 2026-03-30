@@ -6,9 +6,26 @@ description: |
 
   **適用場景**：設計資料庫遷移策略、實作 Migration、管理 Schema 版本、處理大型表變更、
   配置 CI/CD Pipeline、避免 AutoMigrate、GORM 使用規範。
-
-  **關鍵字**：database migration, golang-migrate, goose, schema, version control,
-  pt-online-schema-change, gh-ost, CI/CD, migrations, up/down, rollback, GORM, ORM
+keywords:
+  - database migration
+  - golang-migrate
+  - goose
+  - schema
+  - version control
+  - pt-online-schema-change
+  - gh-ost
+  - ci/cd
+  - migrations
+  - up/down
+  - rollback
+  - gorm
+  - orm
+author: Vincent Yu
+status: unpublished
+updated: '2026-03-30'
+version: 1.0.1
+tag: skill
+type: skill
 ---
 
 # Go Database Migration 與 ORM 規範
